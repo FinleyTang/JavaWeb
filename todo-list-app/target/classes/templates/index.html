@@ -1,0 +1,35 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">ToDo List</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 使用Thymeleaf的 th:each 循环来遍历 todos 列表 -->
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.description}">Description</td>
+            <td>
+                <a th:href="@{/editTodo(description=${todo.description})}" class="btn btn-secondary">Edit</a>
+                <form th:action="@{/deleteTodo}" method="post" style="display:inline;">
+                    <input type="hidden" th:value="${todo.description}" name="description"/>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/addTodo" class="btn btn-primary">Add ToDo</a>
+</div>
+</body>
+</html>

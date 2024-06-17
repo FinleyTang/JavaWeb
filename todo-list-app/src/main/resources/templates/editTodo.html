@@ -1,0 +1,21 @@
+<!-- editTodo.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit ToDo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Edit ToDo</h1>
+    <form th:action="@{/editTodo}" th:object="${todo}" method="post">
+        <div class="form-group">
+            <label for="description">Description</label>
+            <!-- 使用Thymeleaf的 th:field 和 th:readonly 来控制输入框的值和只读属性 -->
+            <input type="text" class="form-control" id="description" th:field="*{description}" th:readonly="${#fields.hasErrors('description')}"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>
